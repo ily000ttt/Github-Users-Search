@@ -1,3 +1,4 @@
+// https://www.youtube.com/watch?v=aaudUAzIKVU
 class View{
     constructor(){
         this.app = document.getElementById('app')
