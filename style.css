@@ -1,6 +1,11 @@
-.app{
+.form{
     margin: 0 auto;
     width: 600px
+}
+.main{
+    display: flex;
+    margin: 0;
+    padding: 0 50px;
 }
 .title {
     margin-bottom: 50px;
@@ -14,4 +19,24 @@
     height: 40px;
     padding: 0 15px;
     width: 100%;
+}
+.users-list{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+.user-small{
+    align-items: center;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    list-style: none;
+    text-align: center;
+    width: calc(25% - 20px);
+}
+.user-small img {
+    height: 120px;
+    max-width: 100%;
 }

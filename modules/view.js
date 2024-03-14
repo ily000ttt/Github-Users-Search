@@ -16,6 +16,7 @@ export class View{
         this.usersList = this.createElement('div', 'users-list')
         this.userLoadMoreBtn = this.createElement('button', 'button')
         this.userLoadMoreBtn.textContent = "Load More"
+        this.userLoadMoreBtn.style.display = 'none'
         this.users.append(this.usersList)
         this.users.append(this.userLoadMoreBtn)
 
@@ -34,5 +35,19 @@ export class View{
         if (elClass)
             element.classList.add(elClass);
         return element;
+    }
+
+    createPrevUser(userData){
+        const userPrev = this.createElement('li', 'user-small')
+        userPrev.addEventListener('click', this.showUserData)
+        
+        userPrev.innerHTML = `<img src="${userData.avatar_url}" alt="${userData.login}">
+                              <span>${userData.login}</span>`
+        this.usersList.append(userPrev)
+    }
+
+     
+    showUserData(){
+
     }
 }

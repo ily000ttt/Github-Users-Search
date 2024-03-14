@@ -1,13 +1,29 @@
 export class Search {
+
+
+
     constructor(view){
         this.view = view;
         this.view.searchInput.addEventListener('keyup', this.debounce(this.searchUsers.bind(this), 500))
     }
+
+    setCurrentUsersPage(number)
+{
+        this.currentUsersPage = number
+}
+setTotalUsersCount(number)
+{
+    this.totalUsersCount = number;
+}
     async searchUsers(){
         const inpValue = this.view.searchInput.value;
+
+        this.currentUsersPage = 0;
+        this.totalUsersCount = 0;
         return await fetch(`https://api.github.com/search/users?q=${inpValue}`).then(res => res.json().then(
             res => {
-                console.log(res)
+                const users = res.items;
+                users.forEach(user=>this.view.createPrevUser(user));
             }
         ))
     }
