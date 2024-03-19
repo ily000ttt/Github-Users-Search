@@ -5,10 +5,16 @@ export class View{
         this.title = this.createElement('h1', 'title')
         this.title.textContent = "Github Search users";
 
+
+
+        this.searchBlock = this.createElement('div', 'search')
         this.searchForm = this.createElement('form', 'form')
         this.searchInput = this.createElement('input', 'input')
         this.searchInput.placeholder = "Write user name..."
-        this.searchForm.append(this.searchInput)
+        this.counter = this.createElement('span', "counter")
+        this.searchForm.append(this.searchInput)       
+        this.searchBlock.append(this.searchForm)
+        this.searchBlock.append(this.counter)
 
         this.main = this.createElement('div', 'main');
 
@@ -27,7 +33,7 @@ export class View{
 
 
         this.app.append(this.title)
-        this.app.append(this.searchForm)
+        this.app.append(this.searchBlock)
         this.app.append(this.main)
     }
     createElement(elTag, elClass){
@@ -49,5 +55,13 @@ export class View{
      
     showUserData(){
 
+    }
+
+    toggleViewUserLoadMoreBtn(isShow){
+        this.userLoadMoreBtn.style.display =isShow ? 'inline-block' : 'none'
+    }
+
+    showCountMessage(message){
+        this.counter.textContent = message;
     }
 }
