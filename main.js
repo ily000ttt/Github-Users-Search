@@ -12,7 +12,7 @@ class App{
 const api = new Api();
 const log = new Log()
 const view = new View()
-const search = new Search(view, log)
+const search = new Search(view, log, api)
 
 
 const app = new App(view,search)

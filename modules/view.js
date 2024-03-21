@@ -64,4 +64,10 @@ export class View{
     showCountMessage(message){
         this.counter.textContent = message;
     }
+
+    clearList(){
+        this.usersList.innerHTML = '';
+        this.counter.textContent = '';
+        this.toggleViewUserLoadMoreBtn(false)
+    }
 }
