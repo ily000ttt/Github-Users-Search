@@ -45,7 +45,7 @@ export class View{
 
     createPrevUser(userData){
         const userPrev = this.createElement('li', 'user-small')
-        userPrev.addEventListener('click', this.showUserData)
+        userPrev.addEventListener('click', ()=> this.showUserData(userData))
         
         userPrev.innerHTML = `<img src="${userData.avatar_url}" alt="${userData.login}">
                               <span>${userData.login}</span>`
@@ -53,8 +53,11 @@ export class View{
     }
 
      
-    showUserData(){
+    showUserData(data){
+        const user = this.createElement('div', 'user')
 
+        user.innerHTML= `<img src = "${data.avatar_url}"> `
+        this.usersInfo.append(user)
     }
 
     toggleViewUserLoadMoreBtn(isShow){

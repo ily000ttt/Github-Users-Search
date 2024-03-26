@@ -40,3 +40,14 @@
     height: 120px;
     max-width: 100%;
 }
+
+.button{
+    background-color: #fff;
+    border: 1px solid #ccc ;
+    border-radius: 5px;
+    box-shadow: none;
+    cursor: pointer;
+    height: 40px;
+    line-height: 38px;
+    padding: 0 15px;
+}
