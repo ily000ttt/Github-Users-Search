@@ -1,5 +1,6 @@
 export class View{
-    constructor(){
+    constructor(api){
+        this.api = api;
         this.app = document.getElementById('app')
         
         this.title = this.createElement('h1', 'title')
@@ -54,10 +55,39 @@ export class View{
 
      
     showUserData(data){
+        
         const user = this.createElement('div', 'user')
 
-        user.innerHTML= `<img src = "${data.avatar_url}"> `
+        this.api.searchUsersData(data.login)
+        .then(data=> {
+            const{followers, following, repos} = data;
+            const followiersList = this.createUserDataBlock(followers, 'Followers');
+            const followingList = this.createUserDataBlock(followers, 'Following');
+            const reposList = this.createUserDataBlock(followers, 'Repos');
+
+            console.log(data)
+        });
+
+        user.innerHTML= `<img src = "${data.avatar_url}" alt = ${data.login}">
+                         <h2>${data.login}</h2>`;
+        
+        this.usersInfo.innerHTML = '';
         this.usersInfo.append(user)
+    }
+
+    createUserDataBlock(list, title){
+        const block = this.createElement('div', 'block')
+        const blockTitle = this.createElement("h2", 'title')
+        const blockList = this.createElement('ul', 'block-list')
+
+        blockTitle.textContent =title;
+
+        list.forEach(item => {
+            blockList.innerHTML += `<li class = "block-list-item">${item}</li>`
+        })
+
+        block.append(blockTitle)
+
     }
 
     toggleViewUserLoadMoreBtn(isShow){

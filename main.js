@@ -11,7 +11,7 @@ class App{
 }
 const api = new Api();
 const log = new Log()
-const view = new View()
+const view = new View(api)
 const search = new Search(view, log, api)
 
 
