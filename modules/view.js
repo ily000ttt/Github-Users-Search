@@ -54,24 +54,26 @@ export class View{
     }
 
      
-    showUserData(data){
+    showUserData(userData){
         
         const user = this.createElement('div', 'user')
 
-        this.api.searchUsersData(data.login)
+        this.usersInfo.innerHTML = '';
+        this.api.searchUsersData(userData.login)
         .then(data=> {
-            const{followers, following, repos} = data;
+            const[followers, following, repos] = data;
             const followiersList = this.createUserDataBlock(followers, 'Followers');
-            const followingList = this.createUserDataBlock(followers, 'Following');
-            const reposList = this.createUserDataBlock(followers, 'Repos');
+            const followingList = this.createUserDataBlock(following, 'Following');
+            const reposList = this.createUserDataBlock(repos, 'Repos');
 
+            user.innerHTML= `<img src = "${userData.avatar_url}" alt = ${userData.login}">
+            <h2>${userData.login}</h2>
+${followiersList}
+${followingList}
+${reposList}`
             console.log(data)
         });
 
-        user.innerHTML= `<img src = "${data.avatar_url}" alt = ${data.login}">
-                         <h2>${data.login}</h2>`;
-        
-        this.usersInfo.innerHTML = '';
         this.usersInfo.append(user)
     }
 
@@ -83,10 +85,15 @@ export class View{
         blockTitle.textContent =title;
 
         list.forEach(item => {
-            blockList.innerHTML += `<li class = "block-list-item">${item}</li>`
+            blockList.innerHTML += `<li class = "block-list-item">
+            <a href = "${item.html_url}" target="_blank">${item.login ? item.login : item.name}</a>
+            </li>`
         })
 
         block.append(blockTitle)
+        block.append(blockList)
+
+        return block.innerHTML;
 
     }
 
